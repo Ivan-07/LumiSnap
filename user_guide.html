@@ -1,0 +1,283 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
+    <link
+      rel="stylesheet"
+      as="style"
+      onload="this.rel='stylesheet'"
+      href="https://fonts.googleapis.com/css2?display=swap&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900&amp;family=Spline+Sans%3Awght%40400%3B500%3B700"
+    />
+
+    <title>LumiSnap - User Guide</title>
+    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  </head>
+  <body>
+    <div
+      class="relative flex size-full min-h-screen flex-col bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 justify-between group/design-root overflow-x-hidden"
+      style='font-family: "Spline Sans", "Noto Sans", sans-serif; max-width: 480px; margin: 0 auto;'
+    >
+      <div>
+        <div class="flex items-center bg-white/80 backdrop-blur-md p-6 pb-4 justify-between border-b border-white/20">
+          <h2 class="text-[#181811] text-2xl font-bold leading-tight tracking-[-0.015em] flex-1 text-center pl-12">LumiSnap</h2>
+          <div class="flex w-12 items-center justify-end">
+            <button
+              id="skipButton"
+              class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 bg-transparent text-[#181811] gap-2 text-base font-bold leading-normal tracking-[0.015em] min-w-0 p-0"
+            >
+              <div class="text-[#181811]" data-icon="Question" data-size="24px" data-weight="regular">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
+                  <path
+                    d="M140,180a12,12,0,1,1-12-12A12,12,0,0,1,140,180ZM128,72c-22.06,0-40,16.15-40,36v4a8,8,0,0,0,16,0v-4c0-11,10.77-20,24-20s24,9,24,20-10.77,20-24,20a8,8,0,0,0-8,8v8a8,8,0,0,0,16,0v-.72c18.24-3.35,32-17.9,32-35.28C168,88.15,150.06,72,128,72Zm104,56A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"
+                  ></path>
+                </svg>
+              </div>
+            </button>
+          </div>
+        </div>
+        <div class="flex w-full flex-row items-center justify-center gap-3 py-5" id="progressIndicator">
+          <div class="h-2 w-2 rounded-full bg-[#181811]" id="step1"></div>
+          <div class="h-2 w-2 rounded-full bg-[#e6e6db]" id="step2"></div>
+          <div class="h-2 w-2 rounded-full bg-[#e6e6db]" id="step3"></div>
+        </div>
+        
+        <!-- Guide Content Container -->
+        <div id="guideContent" class="flex-1 px-6 py-8">
+          <!-- Step 1: Welcome -->
+          <div id="guideStep1" class="guide-step bg-white/80 backdrop-blur-md rounded-2xl p-6 shadow-xl border border-white/20">
+            <h2 class="text-[#181811] tracking-light text-3xl font-bold leading-tight text-center pb-4">Welcome to LumiSnap</h2>
+            <p class="text-[#181811] text-lg font-normal leading-relaxed pb-6 text-center">
+              智能AI相机，将图片与个性化文案完美结合，让内容创作更简单。
+            </p>
+            <div class="flex justify-center">
+              <div class="w-48 h-48 rounded-2xl shadow-lg overflow-hidden border border-white/30">
+                <div
+                  class="w-full h-full bg-center bg-no-repeat bg-cover"
+                  style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDYYi_xcCVk9NWxCld1Q0IbjwhzMd2yvN1wSRsDLtdi1fZW8jYSy4nzjjPDSbzhSKgIAoOimmpcT-cv6oEvFnzTsuTVLiuWHJHdoZdLC1DXbD9wdlDc5JO04OTErXVgD8_NC5kvSOXMH79Q3i4uIN3pSEfjv2hAORF_qwp3246FX1IBNSST8oh4xvk5oT139wqMa9zeQzfguqEc3HCWQ7gKOPK9a1L8POaLb7t9qLSuoae9JuqSgyAxUBdUrb9Kn4DjKHR7sleOiTs");'
+                ></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 2: How to Use -->
+          <div id="guideStep2" class="guide-step hidden bg-white/80 backdrop-blur-md rounded-2xl p-6 shadow-xl border border-white/20">
+            <h2 class="text-[#181811] tracking-light text-3xl font-bold leading-tight text-center pb-4">使用方法</h2>
+            <div class="space-y-4 pb-6">
+              <div class="flex items-center space-x-3">
+                <div class="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center font-bold">1</div>
+                <p class="text-[#181811] text-lg">选择内容风格模板</p>
+              </div>
+              <div class="flex items-center space-x-3">
+                <div class="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center font-bold">2</div>
+                <p class="text-[#181811] text-lg">对准拍摄对象</p>
+              </div>
+              <div class="flex items-center space-x-3">
+                <div class="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center font-bold">3</div>
+                <p class="text-[#181811] text-lg">点击拍摄获得AI文案</p>
+              </div>
+            </div>
+            <div class="flex justify-center">
+              <div class="w-48 h-48 rounded-2xl shadow-lg overflow-hidden border border-white/30">
+                <div
+                  class="w-full h-full bg-center bg-no-repeat bg-cover"
+                  style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBKRNZgcuUq0fo5yd5HEqDFS7kckLk-DrAG8cYiR333jCnaYwI8K3CCWm3NpL4fcz1a6aoolqPfNFssq1Jk0VQMvLlndn9N-OnYZUGRoEsWPKiQB0DHYqJMv5OseVYXtElmArX7sli9QRCW9QzH4Da_yQpOIt70Dt8kK53iDhSyJzLjzWTdXqD0bZ9k_H-WsIYxOkD3DdPobsSQDVbAFm58jrCPfrIsHLGiK-64zJ8gD1_j6i-WvmGndSZq3ypyXeYoBVupRSiffVs");'
+                ></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 3: Ready to Start -->
+          <div id="guideStep3" class="guide-step hidden bg-white/80 backdrop-blur-md rounded-2xl p-6 shadow-xl border border-white/20">
+            <h2 class="text-[#181811] tracking-light text-3xl font-bold leading-tight text-center pb-4">准备开始！</h2>
+            <p class="text-[#181811] text-lg font-normal leading-relaxed pb-6 text-center">
+              一切准备就绪！开始使用AI驱动的智能文案创作吧。点击"开始使用"开启您的创作之旅。
+            </p>
+            <div class="flex justify-center">
+              <div class="w-48 h-48 rounded-2xl shadow-lg overflow-hidden border border-white/30">
+                <div
+                  class="w-full h-full bg-center bg-no-repeat bg-cover"
+                  style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC0a2Z945hYF9yFxvWnu0-Eby2zOr3QpunBpESgPYxDbk7H-o3-fC5v5_sERc4VT4m9KjwcQo56ha6TKDvJ1g1rnEuoNohdtPw4pVHkeFp0NDlAHLtObBrYFGxY_Qzbe5n47kNYtEzZXUq9qTW45HfoiNhIKLBtIP8DNbeaeCWNHjMw8QODvbfE3JIv3qYwr4bw01tOJuri76qyKtFaEet4YgqUQ4HKkyNXhwMViBsuc1LYmbVSVXKrd_ZonL1XaOti9IJmq02y0A4");'
+                ></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Next Button - Centered -->
+        <div class="flex justify-center px-6 py-6 bg-white/80 backdrop-blur-md">
+          <button
+            id="nextButton"
+            class="flex min-w-[200px] max-w-[300px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-14 px-8 bg-gradient-to-r from-blue-500 to-purple-600 text-white text-lg font-bold leading-normal tracking-[0.015em] shadow-lg hover:shadow-xl transition-all duration-200 active:scale-95"
+          >
+            <span class="truncate" id="nextButtonText">下一步</span>
+          </button>
+        </div>
+        <!-- Safe area padding for mobile devices -->
+        <div class="h-8"></div>
+      </div>
+    </div>
+
+    <script>
+      // User Guide JavaScript Logic
+      class UserGuide {
+        constructor() {
+          this.currentStep = 1;
+          this.totalSteps = 3;
+          this.init();
+        }
+
+        init() {
+          // Always show the user guide (remove auto-skip logic)
+          // Users can manually skip if they want to
+          
+          // Bind event listeners
+          this.bindEvents();
+          this.updateUI();
+        }
+
+        bindEvents() {
+          const nextButton = document.getElementById('nextButton');
+          const skipButton = document.getElementById('skipButton');
+
+          nextButton.addEventListener('click', () => this.nextStep());
+          skipButton.addEventListener('click', () => this.skipOnboarding());
+
+          // Touch/swipe support for mobile
+          let startX = null;
+          document.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+          });
+
+          document.addEventListener('touchend', (e) => {
+            if (!startX) return;
+            
+            const endX = e.changedTouches[0].clientX;
+            const diffX = startX - endX;
+
+            if (Math.abs(diffX) > 50) { // Minimum swipe distance
+              if (diffX > 0 && this.currentStep < this.totalSteps) {
+                this.nextStep(); // Swipe left - next
+              } else if (diffX < 0 && this.currentStep > 1) {
+                this.previousStep(); // Swipe right - previous
+              }
+            }
+            startX = null;
+          });
+        }
+
+        nextStep() {
+          if (this.currentStep < this.totalSteps) {
+            this.currentStep++;
+            this.updateUI();
+          } else {
+            this.completeOnboarding();
+          }
+        }
+
+        previousStep() {
+          if (this.currentStep > 1) {
+            this.currentStep--;
+            this.updateUI();
+          }
+        }
+
+        updateUI() {
+          // Update progress indicators
+          for (let i = 1; i <= this.totalSteps; i++) {
+            const stepIndicator = document.getElementById(`step${i}`);
+            if (i <= this.currentStep) {
+              stepIndicator.className = 'h-2 w-2 rounded-full bg-[#181811]';
+            } else {
+              stepIndicator.className = 'h-2 w-2 rounded-full bg-[#e6e6db]';
+            }
+          }
+
+          // Show/hide guide steps
+          for (let i = 1; i <= this.totalSteps; i++) {
+            const stepElement = document.getElementById(`guideStep${i}`);
+            if (i === this.currentStep) {
+              stepElement.classList.remove('hidden');
+              stepElement.style.opacity = '0';
+              setTimeout(() => {
+                stepElement.style.transition = 'opacity 0.3s ease-in-out';
+                stepElement.style.opacity = '1';
+              }, 50);
+            } else {
+              stepElement.classList.add('hidden');
+            }
+          }
+
+          // Update button text
+          const nextButtonText = document.getElementById('nextButtonText');
+          if (this.currentStep === this.totalSteps) {
+            nextButtonText.textContent = '开始使用';
+          } else {
+            nextButtonText.textContent = '下一步';
+          }
+        }
+
+        skipOnboarding() {
+          if (confirm('Are you sure you want to skip the guide?')) {
+            this.completeOnboarding();
+          }
+        }
+
+        completeOnboarding() {
+          // Mark onboarding as completed
+          localStorage.setItem('lumisnap_onboarding_completed', 'true');
+          
+          // Add completion animation
+          const nextButton = document.getElementById('nextButton');
+          nextButton.style.transform = 'scale(0.95)';
+          nextButton.style.transition = 'transform 0.1s ease-in-out';
+          
+          setTimeout(() => {
+            nextButton.style.transform = 'scale(1)';
+            setTimeout(() => {
+              this.goToMainInterface();
+            }, 100);
+          }, 100);
+        }
+
+        hasCompletedOnboarding() {
+          return localStorage.getItem('lumisnap_onboarding_completed') === 'true';
+        }
+
+        goToMainInterface() {
+          // Add fade out animation
+          document.body.style.transition = 'opacity 0.3s ease-out';
+          document.body.style.opacity = '0';
+          
+          setTimeout(() => {
+            window.location.href = 'main_interface.html';
+          }, 300);
+        }
+      }
+
+      // Initialize the user guide when DOM is loaded
+      document.addEventListener('DOMContentLoaded', () => {
+        new UserGuide();
+      });
+
+      // Add CSS for smooth transitions
+      const style = document.createElement('style');
+      style.textContent = `
+        .guide-step {
+          transition: opacity 0.3s ease-in-out;
+        }
+        
+        button:active {
+          transform: scale(0.98);
+        }
+        
+        .progress-dot {
+          transition: background-color 0.3s ease-in-out;
+        }
+      `;
+      document.head.appendChild(style);
+    </script>
+  </body>
+</html>

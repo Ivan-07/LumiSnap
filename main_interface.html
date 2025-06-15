@@ -1,0 +1,507 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
+    <link
+      rel="stylesheet"
+      as="style"
+      onload="this.rel='stylesheet'"
+      href="https://fonts.googleapis.com/css2?display=swap&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900&amp;family=Spline+Sans%3Awght%40400%3B500%3B700"
+    />
+
+    <title>LumiSnap - Camera</title>
+    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  </head>
+  <body>
+    <div
+      class="relative flex size-full min-h-screen flex-col justify-between group/design-root overflow-x-hidden"
+      style='font-family: "Spline Sans", "Noto Sans", sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); max-width: 480px; margin: 0 auto;'
+    >
+      <div>
+        <div class="flex items-center bg-white/10 backdrop-blur-md p-4 pb-2 justify-between">
+          <div class="text-white flex size-12 shrink-0 items-center" data-icon="X" data-size="24px" data-weight="regular">
+            <button id="closeButton">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
+                <path
+                  d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"
+                ></path>
+              </svg>
+            </button>
+          </div>
+          <div class="flex w-12 items-center justify-end">
+            <button
+              id="settingsButton"
+              class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 bg-transparent text-white gap-2 text-base font-bold leading-normal tracking-[0.015em] min-w-0 p-0"
+            >
+              <div class="text-white" data-icon="Gear" data-size="24px" data-weight="regular">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
+                  <path
+                    d="M128,80a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160Zm88-29.84q.06-2.16,0-4.32l14.92-18.64a8,8,0,0,0,1.48-7.06,107.21,107.21,0,0,0-10.88-26.25,8,8,0,0,0-6-3.93l-23.72-2.64q-1.48-1.56-3-3L186,40.54a8,8,0,0,0-3.94-6,107.71,107.71,0,0,0-26.25-10.87,8,8,0,0,0-7.06,1.49L130.16,40Q128,40,125.84,40L107.2,25.11a8,8,0,0,0-7.06-1.48A107.6,107.6,0,0,0,73.89,34.51a8,8,0,0,0-3.93,6L67.32,64.27q-1.56,1.49-3,3L40.54,70a8,8,0,0,0-6,3.94,107.71,107.71,0,0,0-10.87,26.25,8,8,0,0,0,1.49,7.06L40,125.84Q40,128,40,130.16L25.11,148.8a8,8,0,0,0-1.48,7.06,107.21,107.21,0,0,0,10.88,26.25,8,8,0,0,0,6,3.93l23.72,2.64q1.49,1.56,3,3L70,215.46a8,8,0,0,0,3.94,6,107.71,107.71,0,0,0,26.25,10.87,8,8,0,0,0,7.06-1.49L125.84,216q2.16.06,4.32,0l18.64,14.92a8,8,0,0,0,7.06,1.48,107.21,107.21,0,0,0,26.25-10.88,8,8,0,0,0,3.93-6l2.64-23.72q1.56-1.48,3-3L215.46,186a8,8,0,0,0,6-3.94,107.71,107.71,0,0,0,10.87-26.25,8,8,0,0,0-1.49-7.06Zm-16.1-6.5a73.93,73.93,0,0,1,0,8.68,8,8,0,0,0,1.74,5.48l14.19,17.73a91.57,91.57,0,0,1-6.23,15L187,173.11a8,8,0,0,0-5.1,2.64,74.11,74.11,0,0,1-6.14,6.14,8,8,0,0,0-2.64,5.1l-2.51,22.58a91.32,91.32,0,0,1-15,6.23l-17.74-14.19a8,8,0,0,0-5-1.75h-.48a73.93,73.93,0,0,1-8.68,0,8,8,0,0,0-5.48,1.74L100.45,215.8a91.57,91.57,0,0,1-15-6.23L82.89,187a8,8,0,0,0-2.64-5.1,74.11,74.11,0,0,1-6.14-6.14,8,8,0,0,0-5.1-2.64L46.43,170.6a91.32,91.32,0,0,1-6.23-15l14.19-17.74a8,8,0,0,0,1.74-5.48,73.93,73.93,0,0,1,0-8.68,8,8,0,0,0-1.74-5.48L40.2,100.45a91.57,91.57,0,0,1,6.23-15L69,82.89a8,8,0,0,0,5.1-2.64,74.11,74.11,0,0,1,6.14-6.14A8,8,0,0,0,82.89,69L85.4,46.43a91.32,91.32,0,0,1,15-6.23l17.74,14.19a8,8,0,0,0,5.48,1.74,73.93,73.93,0,0,1,8.68,0,8,8,0,0,0,5.48-1.74L155.55,40.2a91.57,91.57,0,0,1,15,6.23L173.11,69a8,8,0,0,0,2.64,5.1,74.11,74.11,0,0,1,6.14,6.14,8,8,0,0,0,5.1,2.64l22.58,2.51a91.32,91.32,0,0,1,6.23,15l-14.19,17.74A8,8,0,0,0,199.87,123.66Z"
+                  ></path>
+                </svg>
+              </div>
+            </button>
+          </div>
+        </div>
+
+        <!-- Camera Viewfinder -->
+        <div
+          id="cameraContainer"
+          class="relative flex items-center justify-center bg-black/20 backdrop-blur-sm bg-cover bg-center aspect-[4/3] mx-6 my-6 rounded-3xl overflow-hidden shadow-2xl border-2 border-white/30"
+        >
+          <video id="videoElement" class="w-full h-full object-cover" autoplay muted playsinline></video>
+          <canvas id="captureCanvas" class="hidden"></canvas>
+          
+                     <!-- Camera Permission Prompt -->
+           <div id="permissionPrompt" class="absolute inset-0 flex flex-col items-center justify-center bg-black/40 backdrop-blur-md text-white p-4 hidden rounded-2xl">
+            <div class="text-6xl mb-4">📷</div>
+            <h3 class="text-xl font-bold mb-2">Camera Access Required</h3>
+            <p class="text-center mb-4">LumiSnap needs camera access to capture photos and generate captions.</p>
+            <button id="enableCameraButton" class="bg-[#f8f406] text-[#181811] px-6 py-2 rounded-full font-bold">
+              Enable Camera
+            </button>
+          </div>
+
+          <!-- Loading Indicator -->
+          <div id="loadingIndicator" class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
+            <div class="text-white text-center">
+              <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-white mx-auto mb-4"></div>
+              <p>Generating caption...</p>
+            </div>
+          </div>
+
+                     <!-- Capture Button (Centered) -->
+           <button id="captureButton" class="absolute flex shrink-0 items-center justify-center rounded-full size-20 bg-white/20 backdrop-blur-md text-white disabled:opacity-50 disabled:cursor-not-allowed border-4 border-white/30 hover:bg-white/30 transition-all duration-200">
+            <div class="text-inherit" data-icon="Play" data-size="24px" data-weight="fill">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
+                <path
+                  d="M240,128a15.74,15.74,0,0,1-7.6,13.51L88.32,229.65a16,16,0,0,1-16.2.3A15.86,15.86,0,0,1,64,216.13V39.87a15.86,15.86,0,0,1,8.12-13.82,16,16,0,0,1,16.2.3L232.4,114.49A15.74,15.74,0,0,1,240,128Z"
+                ></path>
+              </svg>
+            </div>
+          </button>
+        </div>
+
+        <!-- Scene Template Selector -->
+        <div class="bg-white/10 backdrop-blur-md py-4 mx-6 rounded-2xl shadow-lg border border-white/20">
+                      <div class="flex items-center gap-2 px-6 py-2">
+              <h3 class="text-white font-semibold text-lg">选择风格:</h3>
+              <span id="selectedTemplateName" class="text-white/70 text-lg">Instagram Story</span>
+            </div>
+                      <div id="templateSelector" class="flex gap-3 px-6 overflow-x-auto scrollbar-hide pb-2">
+            <!-- Templates will be dynamically generated -->
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="flex justify-stretch">
+          <div class="flex flex-1 gap-3 flex-wrap px-4 py-3 justify-between">
+            <button
+              id="templatesButton"
+              class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-4 bg-[#f5f5f0] text-[#181811] text-sm font-bold leading-normal tracking-[0.015em]"
+            >
+              <span class="truncate">Templates</span>
+            </button>
+            <button
+              id="captureMainButton"
+              class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-4 bg-[#f8f406] text-[#181811] text-sm font-bold leading-normal tracking-[0.015em]"
+            >
+              <span class="truncate">Capture</span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div><div class="h-5"></div></div>
+    </div>
+
+    <script>
+      // Main Interface JavaScript Logic
+      class CameraInterface {
+        constructor() {
+          this.stream = null;
+          this.selectedTemplate = 'instagram-story';
+          this.templates = [
+            { id: 'instagram-story', name: 'INS风格', emoji: '📱', description: '潮流生活分享，简洁时尚' },
+            { id: 'xiaohongshu', name: '小红书风格', emoji: '🛍️', description: '种草/测评，亲切活泼' },
+            { id: 'xianyu', name: '闲鱼转卖', emoji: '💰', description: '商品转卖，突出卖点' },
+            { id: 'wechat-moments', name: '朋友圈', emoji: '💭', description: '日常心情，真实自然' },
+            { id: 'food-review', name: '美食探店', emoji: '🍽️', description: '美食点评，环境推荐' }
+          ];
+          this.init();
+        }
+
+        async init() {
+          this.bindEvents();
+          this.renderTemplates();
+          this.checkCameraSupport();
+          await this.requestCameraPermission();
+        }
+
+        bindEvents() {
+          const captureButton = document.getElementById('captureButton');
+          const captureMainButton = document.getElementById('captureMainButton');
+          const enableCameraButton = document.getElementById('enableCameraButton');
+          const closeButton = document.getElementById('closeButton');
+          const settingsButton = document.getElementById('settingsButton');
+          const templatesButton = document.getElementById('templatesButton');
+
+          captureButton.addEventListener('click', () => this.capturePhoto());
+          captureMainButton.addEventListener('click', () => this.capturePhoto());
+          enableCameraButton.addEventListener('click', () => this.requestCameraPermission());
+          closeButton.addEventListener('click', () => this.goBack());
+          settingsButton.addEventListener('click', () => this.openSettings());
+          templatesButton.addEventListener('click', () => this.toggleTemplateSelector());
+        }
+
+        checkCameraSupport() {
+          if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+            this.showError('Camera not supported on this device');
+            return false;
+          }
+          return true;
+        }
+
+        async requestCameraPermission() {
+          try {
+            const permissionPrompt = document.getElementById('permissionPrompt');
+            const videoElement = document.getElementById('videoElement');
+            
+            this.stream = await navigator.mediaDevices.getUserMedia({ 
+              video: { 
+                facingMode: 'environment', // Use back camera
+                width: { ideal: 1920 },
+                height: { ideal: 1080 }
+              } 
+            });
+            
+            videoElement.srcObject = this.stream;
+            permissionPrompt.classList.add('hidden');
+            this.enableCaptureButton();
+            
+          } catch (error) {
+            console.error('Camera permission denied:', error);
+            this.showCameraPermissionPrompt();
+          }
+        }
+
+        showCameraPermissionPrompt() {
+          const permissionPrompt = document.getElementById('permissionPrompt');
+          permissionPrompt.classList.remove('hidden');
+          this.disableCaptureButton();
+        }
+
+        enableCaptureButton() {
+          const captureButton = document.getElementById('captureButton');
+          const captureMainButton = document.getElementById('captureMainButton');
+          captureButton.disabled = false;
+          captureMainButton.disabled = false;
+        }
+
+        disableCaptureButton() {
+          const captureButton = document.getElementById('captureButton');
+          const captureMainButton = document.getElementById('captureMainButton');
+          captureButton.disabled = true;
+          captureMainButton.disabled = true;
+        }
+
+        renderTemplates() {
+          const templateSelector = document.getElementById('templateSelector');
+          templateSelector.innerHTML = this.templates.map(template => `
+            <button 
+              class="template-item flex flex-col items-center p-3 rounded-lg border-2 transition-all duration-200 w-[30%] min-w-[100px] max-w-[120px] m-2 ${
+                template.id === this.selectedTemplate 
+                  ? 'border-[#f8f406] bg-[#f8f406]/20 backdrop-blur-sm' 
+                  : 'border-white/30 bg-white/10 backdrop-blur-sm'
+              }"
+              data-template-id="${template.id}"
+            >
+              <div class="text-2xl mb-1">${template.emoji}</div>
+              <div class="text-xs font-semibold text-white text-center whitespace-nowrap">${template.name}</div>
+              <div class="text-xs text-white/70 text-center mt-1">${template.description}</div>
+            </button>
+          `).join('');
+          templateSelector.className = 'grid grid-cols-3 gap-2 px-4 pb-2';
+
+          // Bind template selection events
+          templateSelector.addEventListener('click', (e) => {
+            const templateItem = e.target.closest('.template-item');
+            if (templateItem) {
+              this.selectTemplate(templateItem.dataset.templateId);
+            }
+          });
+        }
+
+        selectTemplate(templateId) {
+          this.selectedTemplate = templateId;
+          const selectedTemplate = this.templates.find(t => t.id === templateId);
+          
+          // Update UI
+          document.getElementById('selectedTemplateName').textContent = selectedTemplate.name;
+          
+          // Update template selector
+          document.querySelectorAll('.template-item').forEach(item => {
+            if (item.dataset.templateId === templateId) {
+              item.className = 'template-item flex-shrink-0 flex flex-col items-center p-3 rounded-lg border-2 transition-all duration-200 border-[#f8f406] bg-[#f8f406]/20 backdrop-blur-sm';
+            } else {
+              item.className = 'template-item flex-shrink-0 flex flex-col items-center p-3 rounded-lg border-2 transition-all duration-200 border-white/30 bg-white/10 backdrop-blur-sm';
+            }
+          });
+
+          // Add selection animation
+          const selectedItem = document.querySelector(`[data-template-id="${templateId}"]`);
+          selectedItem.style.transform = 'scale(0.95)';
+          setTimeout(() => {
+            selectedItem.style.transform = 'scale(1)';
+          }, 150);
+        }
+
+        async capturePhoto() {
+          if (!this.stream) {
+            this.showError('Camera not available');
+            return;
+          }
+
+          try {
+            const loadingIndicator = document.getElementById('loadingIndicator');
+            const videoElement = document.getElementById('videoElement');
+            const canvas = document.getElementById('captureCanvas');
+            const ctx = canvas.getContext('2d');
+
+            // Show loading
+            loadingIndicator.classList.remove('hidden');
+            this.disableCaptureButton();
+
+            // Capture frame from video
+            canvas.width = videoElement.videoWidth;
+            canvas.height = videoElement.videoHeight;
+            ctx.drawImage(videoElement, 0, 0);
+
+            // Convert to blob
+            const imageBlob = await new Promise(resolve => {
+              canvas.toBlob(resolve, 'image/jpeg', 0.9);
+            });
+
+            // Store captured data with AI caption generation
+            await this.storeCapturedData(imageBlob);
+
+            // Navigate to result page
+            this.goToResultPage();
+
+          } catch (error) {
+            console.error('Capture failed:', error);
+            this.showError('Failed to capture photo');
+          } finally {
+            document.getElementById('loadingIndicator').classList.add('hidden');
+            this.enableCaptureButton();
+          }
+        }
+
+        async simulateAIGeneration() {
+          // Simulate AI processing time (1-3 seconds)
+          const delay = Math.random() * 2000 + 1000;
+          return new Promise(resolve => setTimeout(resolve, delay));
+        }
+
+        async storeCapturedData(imageBlob) {
+          return new Promise((resolve, reject) => {
+            // Convert blob to base64 for storage
+            const reader = new FileReader();
+            reader.onload = async () => {
+              try {
+                // 生成AI文案
+                const caption = await this.generateAICaption(reader.result, this.selectedTemplate);
+                
+                const capturedData = {
+                  image: reader.result,
+                  template: this.selectedTemplate,
+                  timestamp: Date.now(),
+                  caption: caption
+                };
+                
+                localStorage.setItem('lumisnap_captured_data', JSON.stringify(capturedData));
+                resolve();
+              } catch (error) {
+                console.error('Failed to generate AI caption:', error);
+                // 如果AI生成失败，使用备用文案
+                const capturedData = {
+                  image: reader.result,
+                  template: this.selectedTemplate,
+                  timestamp: Date.now(),
+                  caption: this.generateMockCaption()
+                };
+                
+                localStorage.setItem('lumisnap_captured_data', JSON.stringify(capturedData));
+                resolve();
+              }
+            };
+            reader.onerror = reject;
+            reader.readAsDataURL(imageBlob);
+          });
+        }
+
+        // 真实的AI视觉理解API调用
+        async generateAICaption(imageData, template) {
+          try {
+            // 将图片数据转换为base64格式（去掉data:image前缀）
+            const base64Image = imageData.replace(/^data:image\/[a-z]+;base64,/, '');
+            
+            // 根据模板定义不同的prompt
+            const prompts = {
+              'instagram-story': "请为这张图片生成一个适合Instagram发布的中文文案，要求：简洁时尚，包含相关话题标签，体现生活美学，字数控制在100字以内。",
+              'xiaohongshu': "请为这张图片生成一个适合小红书发布的中文文案，要求：亲切活泼的语气，包含实用tips或心得分享，使用合适的emoji，添加相关话题标签，字数控制在200字以内。",
+              'xianyu': "请为这张图片生成一个适合闲鱼发布的中文商品描述，要求：突出商品特点和优势，包含价格、使用情况等关键信息，语气诚恳可信，字数控制在150字以内。",
+              'wechat-moments': "请为这张图片生成一个适合微信朋友圈发布的中文文案，要求：自然真实的语气，表达当下心情或感受，简洁温馨，字数控制在50字以内。",
+              'food-review': "请为这张图片生成一个适合美食分享的中文文案，要求：描述食物的色香味，包含餐厅推荐信息，添加相关标签，字数控制在150字以内。"
+            };
+
+            const systemPrompt = prompts[template] || prompts['instagram-story'];
+
+            const response = await fetch('https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions', {
+              method: 'POST',
+              headers: {
+                'Authorization': 'Bearer sk-a7349f35a2ea4c9986b36b6396a5f45b',
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                model: "qwen-vl-max",
+                messages: [
+                  {
+                    "role": "system",
+                    "content": [
+                      {"type": "text", "text": "你是一个专业的文案创作助手，善于根据图片内容生成各种平台适用的优质文案。"}
+                    ]
+                  },
+                  {
+                    "role": "user", 
+                    "content": [
+                      {
+                        "type": "image_url", 
+                        "image_url": {
+                          "url": `data:image/jpeg;base64,${base64Image}`
+                        }
+                      },
+                      {
+                        "type": "text", 
+                        "text": systemPrompt
+                      }
+                    ]
+                  }
+                ]
+              })
+            });
+
+            if (!response.ok) {
+              throw new Error(`API请求失败: ${response.status} - ${response.statusText}`);
+            }
+
+            const data = await response.json();
+            
+            if (data.choices && data.choices[0] && data.choices[0].message) {
+              return data.choices[0].message.content;
+            } else {
+              throw new Error('API返回数据格式异常');
+            }
+
+          } catch (error) {
+            console.error('AI文案生成失败:', error);
+            throw error; // 重新抛出错误，让调用方处理
+          }
+        }
+
+        generateMockCaption() {
+          const templates = {
+            'instagram-story': "✨ 记录生活中的美好瞬间 💫 #美好生活 #记录瞬间",
+            'xiaohongshu': "🛍️ 分享一下今天的美好发现！质感真的很棒～ ✨ #种草 #好物推荐",
+            'xianyu': "💰 9成新，原价购入，现低价转让！有意私聊～支持同城面交哦！",
+            'wechat-moments': "今天的心情像天气一样美好☀️ 简单的幸福就是最珍贵的礼物",
+            'food-review': "🍽️ 这道菜真的太绝了！每一口都让人惊艳！五星推荐！"
+          };
+          
+          return templates[this.selectedTemplate] || "记录生活中的美好瞬间 ✨";
+        }
+
+        toggleTemplateSelector() {
+          const selector = document.getElementById('templateSelector').parentElement;
+          const isHidden = selector.style.display === 'none';
+          
+          if (isHidden) {
+            selector.style.display = 'block';
+            selector.style.animation = 'slideDown 0.3s ease-out';
+          } else {
+            selector.style.animation = 'slideUp 0.3s ease-out';
+            setTimeout(() => {
+              selector.style.display = 'none';
+            }, 300);
+          }
+        }
+
+        goToResultPage() {
+          // Add transition animation
+          document.body.style.transition = 'opacity 0.3s ease-out';
+          document.body.style.opacity = '0';
+          
+          setTimeout(() => {
+            window.location.href = 'result_display.html';
+          }, 300);
+        }
+
+        goBack() {
+          if (confirm('Are you sure you want to exit the camera?')) {
+            if (this.stream) {
+              this.stream.getTracks().forEach(track => track.stop());
+            }
+            window.history.back();
+          }
+        }
+
+        openSettings() {
+          alert('Settings feature coming soon!');
+        }
+
+        showError(message) {
+          alert(message); // In production, use a better error UI
+        }
+      }
+
+      // Initialize camera interface when DOM is loaded
+      document.addEventListener('DOMContentLoaded', () => {
+        new CameraInterface();
+      });
+
+      // Add CSS animations
+      const style = document.createElement('style');
+      style.textContent = `
+        .scrollbar-hide {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+        
+        @keyframes slideDown {
+          from { transform: translateY(-10px); opacity: 0; }
+          to { transform: translateY(0); opacity: 1; }
+        }
+        
+        @keyframes slideUp {
+          from { transform: translateY(0); opacity: 1; }
+          to { transform: translateY(-10px); opacity: 0; }
+        }
+        
+        button:active {
+          transform: scale(0.98);
+        }
+        
+        .template-item:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+      `;
+      document.head.appendChild(style);
+    </script>
+  </body>
+</html>
