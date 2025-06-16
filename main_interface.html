@@ -53,7 +53,19 @@
           class="relative flex items-center justify-center bg-black/20 backdrop-blur-sm bg-cover bg-center aspect-[4/3] mx-6 my-6 rounded-3xl overflow-hidden shadow-2xl border-2 border-white/30"
         >
           <video id="videoElement" class="w-full h-full object-cover" autoplay muted playsinline></video>
-          <canvas id="captureCanvas" class="hidden"></canvas>
+          <canvas id="captureCanvas" class="hidden w-full h-full object-cover"></canvas>
+          
+          <!-- Camera Flash Effect -->
+          <div id="flashEffect" class="absolute inset-0 bg-white opacity-0 pointer-events-none transition-opacity duration-150"></div>
+          
+          <!-- Capture Success Indicator -->
+          <div id="captureSuccess" class="absolute inset-0 flex items-center justify-center bg-black/30 backdrop-blur-sm hidden">
+            <div class="text-white text-center">
+              <div class="text-6xl mb-2">✓</div>
+              <p class="text-lg font-semibold">拍摄成功</p>
+              <p class="text-sm opacity-80">正在生成文案...</p>
+            </div>
+          </div>
           
                      <!-- Camera Permission Prompt -->
            <div id="permissionPrompt" class="absolute inset-0 flex flex-col items-center justify-center bg-black/40 backdrop-blur-md text-white p-4 hidden rounded-2xl">
@@ -265,38 +277,77 @@
           }
 
           try {
-            const loadingIndicator = document.getElementById('loadingIndicator');
             const videoElement = document.getElementById('videoElement');
             const canvas = document.getElementById('captureCanvas');
+            const flashEffect = document.getElementById('flashEffect');
+            const captureSuccess = document.getElementById('captureSuccess');
             const ctx = canvas.getContext('2d');
 
-            // Show loading
-            loadingIndicator.classList.remove('hidden');
+            // Disable capture button immediately
             this.disableCaptureButton();
 
-            // Capture frame from video
+            // 1. Flash effect - simulate camera flash
+            flashEffect.style.opacity = '0.8';
+            setTimeout(() => {
+              flashEffect.style.opacity = '0';
+            }, 150);
+
+            // Small delay to show flash effect
+            await new Promise(resolve => setTimeout(resolve, 100));
+
+            // 2. Capture frame from video
             canvas.width = videoElement.videoWidth;
             canvas.height = videoElement.videoHeight;
             ctx.drawImage(videoElement, 0, 0);
 
-            // Convert to blob
+            // 3. Freeze the captured frame - show canvas, hide video
+            videoElement.classList.add('hidden');
+            canvas.classList.remove('hidden');
+
+            // 4. Show capture success indicator
+            captureSuccess.classList.remove('hidden');
+
+            // 5. Give user time to see the frozen capture (1 second)
+            await new Promise(resolve => setTimeout(resolve, 1000));
+
+            // 6. Hide success indicator and show loading
+            captureSuccess.classList.add('hidden');
+            const loadingIndicator = document.getElementById('loadingIndicator');
+            loadingIndicator.classList.remove('hidden');
+
+            // 7. Convert to blob for processing
             const imageBlob = await new Promise(resolve => {
               canvas.toBlob(resolve, 'image/jpeg', 0.9);
             });
 
-            // Store captured data with AI caption generation
+            // 8. Store captured data with AI caption generation
             await this.storeCapturedData(imageBlob);
 
-            // Navigate to result page
+            // 9. Navigate to result page
             this.goToResultPage();
 
           } catch (error) {
             console.error('Capture failed:', error);
             this.showError('Failed to capture photo');
-          } finally {
-            document.getElementById('loadingIndicator').classList.add('hidden');
-            this.enableCaptureButton();
+            // Reset UI on error
+            this.resetCameraUI();
           }
+        }
+
+        resetCameraUI() {
+          const videoElement = document.getElementById('videoElement');
+          const canvas = document.getElementById('captureCanvas');
+          const loadingIndicator = document.getElementById('loadingIndicator');
+          const captureSuccess = document.getElementById('captureSuccess');
+          const flashEffect = document.getElementById('flashEffect');
+
+          // Reset all UI elements
+          videoElement.classList.remove('hidden');
+          canvas.classList.add('hidden');
+          loadingIndicator.classList.add('hidden');
+          captureSuccess.classList.add('hidden');
+          flashEffect.style.opacity = '0';
+          this.enableCaptureButton();
         }
 
         async simulateAIGeneration() {
